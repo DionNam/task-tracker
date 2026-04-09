@@ -72,63 +72,67 @@ export default function TeamSettingsPage() {
   if (!team) {
     return (
       <div className="max-w-md mx-auto p-6">
-        <h1 className="text-2xl font-bold mb-4">팀 생성</h1>
-        <input
-          value={teamName}
-          onChange={(e) => setTeamName(e.target.value)}
-          placeholder="팀 이름"
-          className="border rounded-lg px-4 py-2 w-full mb-4"
-        />
-        <button onClick={createTeam} className="bg-gray-900 text-white px-6 py-2 rounded-lg w-full">
-          생성
-        </button>
+        <h1 className="text-2xl font-bold text-slate-800 mb-6">팀 생성</h1>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-4">
+          <input
+            value={teamName}
+            onChange={(e) => setTeamName(e.target.value)}
+            placeholder="팀 이름"
+            className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 w-full focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+          />
+          <button onClick={createTeam} className="bg-blue-600 text-white px-6 py-3 rounded-xl w-full font-medium hover:bg-blue-500 transition-colors">
+            생성
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
-      <h1 className="text-2xl font-bold">{team.name} — 설정</h1>
+      <h1 className="text-2xl font-bold text-slate-800">{team.name} — 설정</h1>
 
-      <div className="bg-white rounded-xl border p-4">
-        <h2 className="font-medium mb-4">팀원 추가</h2>
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+        <h2 className="font-semibold text-slate-700 mb-4">팀원 추가</h2>
         <div className="flex gap-2">
           <input
             value={memberName}
             onChange={(e) => setMemberName(e.target.value)}
             placeholder="팀원 이름"
-            className="border rounded-lg px-4 py-2 flex-1"
+            className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 flex-1 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
           />
-          <button onClick={addMember} className="bg-gray-900 text-white px-6 py-2 rounded-lg">
+          <button onClick={addMember} className="bg-blue-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-500 transition-colors">
             추가
           </button>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
         <table className="w-full">
-          <thead className="bg-gray-50">
+          <thead className="bg-slate-50 border-b border-slate-100">
             <tr>
-              <th className="text-left px-4 py-3 text-sm font-medium text-gray-500">이름</th>
-              <th className="text-left px-4 py-3 text-sm font-medium text-gray-500">Invite Key</th>
-              <th className="text-right px-4 py-3 text-sm font-medium text-gray-500">액션</th>
+              <th className="text-left px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">이름</th>
+              <th className="text-left px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Invite Key</th>
+              <th className="text-right px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">액션</th>
             </tr>
           </thead>
-          <tbody className="divide-y">
+          <tbody className="divide-y divide-slate-100">
             {members.map((m) => (
-              <tr key={m.id}>
-                <td className="px-4 py-3 text-sm">{m.name}</td>
-                <td className="px-4 py-3 text-sm font-mono text-xs">{m.invite_key}</td>
+              <tr key={m.id} className="hover:bg-slate-50 transition-colors">
+                <td className="px-4 py-3 text-sm text-slate-700">{m.name}</td>
+                <td className="px-4 py-3">
+                  <span className="font-mono text-xs bg-slate-50 px-2 py-1 rounded border border-slate-200 text-slate-600">{m.invite_key}</span>
+                </td>
                 <td className="px-4 py-3 text-sm text-right">
                   <button
                     onClick={() => navigator.clipboard.writeText(m.invite_key)}
-                    className="text-blue-600 hover:underline mr-3"
+                    className="text-blue-500 hover:text-blue-600 font-medium mr-3 transition-colors"
                   >
                     복사
                   </button>
                   <button
                     onClick={() => deleteMember(m.id)}
-                    className="text-red-600 hover:underline"
+                    className="text-red-500 hover:text-red-600 font-medium transition-colors"
                   >
                     삭제
                   </button>

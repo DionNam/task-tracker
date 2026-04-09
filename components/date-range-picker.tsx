@@ -13,15 +13,15 @@ export function DateRangePicker({ value, onChange }: DateRangePickerProps) {
   ];
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-1 bg-slate-100 p-1 rounded-xl">
       {options.map((opt) => (
         <button
           key={opt.key}
           onClick={() => onChange(opt.key)}
-          className={`px-4 py-2 rounded-lg text-sm ${
+          className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
             value === opt.key
-              ? 'bg-gray-900 text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              ? 'bg-white text-slate-900 shadow-sm'
+              : 'text-slate-500 hover:text-slate-700'
           }`}
         >
           {opt.label}

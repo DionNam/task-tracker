@@ -6,23 +6,23 @@ interface MemberTableProps {
 
 export function MemberTable({ members }: MemberTableProps) {
   return (
-    <div className="bg-white rounded-xl border overflow-hidden">
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
       <table className="w-full">
-        <thead className="bg-gray-50">
-          <tr>
-            <th className="text-left px-4 py-3 text-sm font-medium text-gray-500">이름</th>
-            <th className="text-right px-4 py-3 text-sm font-medium text-gray-500">Input Tokens</th>
-            <th className="text-right px-4 py-3 text-sm font-medium text-gray-500">Output Tokens</th>
-            <th className="text-right px-4 py-3 text-sm font-medium text-gray-500">프롬프트</th>
+        <thead>
+          <tr className="border-b border-slate-100">
+            <th className="text-left px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">이름</th>
+            <th className="text-right px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">Input Tokens</th>
+            <th className="text-right px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">Output Tokens</th>
+            <th className="text-right px-5 py-3.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">프롬프트</th>
           </tr>
         </thead>
-        <tbody className="divide-y">
+        <tbody className="divide-y divide-slate-50">
           {members.map((m) => (
-            <tr key={m.id}>
-              <td className="px-4 py-3 text-sm">{m.name}</td>
-              <td className="px-4 py-3 text-sm text-right">{m.inputTokens.toLocaleString()}</td>
-              <td className="px-4 py-3 text-sm text-right">{m.outputTokens.toLocaleString()}</td>
-              <td className="px-4 py-3 text-sm text-right">{m.promptCount.toLocaleString()}</td>
+            <tr key={m.id} className="hover:bg-slate-50/50 transition-colors">
+              <td className="px-5 py-3.5 text-sm font-medium text-slate-700">{m.name}</td>
+              <td className="px-5 py-3.5 text-sm font-mono text-right text-slate-600">{m.inputTokens.toLocaleString()}</td>
+              <td className="px-5 py-3.5 text-sm font-mono text-right text-slate-600">{m.outputTokens.toLocaleString()}</td>
+              <td className="px-5 py-3.5 text-sm font-mono text-right text-slate-600">{m.promptCount.toLocaleString()}</td>
             </tr>
           ))}
         </tbody>
